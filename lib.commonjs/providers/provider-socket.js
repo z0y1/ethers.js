@@ -164,8 +164,8 @@ class SocketProvider extends provider_jsonrpc_js_1.JsonRpcApiProvider {
      *
      *  If unspecified, the network will be discovered.
      */
-    constructor(network) {
-        super(network, { batchMaxCount: 1 });
+    constructor(network, options) {
+        super(network, { batchMaxCount: 1, ...options });
         this.#callbacks = new Map();
         this.#subs = new Map();
         this.#pending = new Map();

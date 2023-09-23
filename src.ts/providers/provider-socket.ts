@@ -15,7 +15,7 @@ import { JsonRpcApiProvider } from "./provider-jsonrpc.js";
 
 import type { Subscriber, Subscription } from "./abstract-provider.js";
 import type { EventFilter } from "./provider.js";
-import type { JsonRpcError, JsonRpcPayload, JsonRpcResult } from "./provider-jsonrpc.js";
+import type { JsonRpcApiProviderOptions, JsonRpcError, JsonRpcPayload, JsonRpcResult } from "./provider-jsonrpc.js";
 import type { Networkish } from "./network.js";
 
 
@@ -194,8 +194,8 @@ export class SocketProvider extends JsonRpcApiProvider {
      *
      *  If unspecified, the network will be discovered.
      */
-    constructor(network?: Networkish) {
-        super(network, { batchMaxCount: 1 });
+    constructor(network?: Networkish, options?: JsonRpcApiProviderOptions) {
+        super(network, { batchMaxCount: 1, ...options });
         this.#callbacks = new Map();
         this.#subs = new Map();
         this.#pending = new Map();
