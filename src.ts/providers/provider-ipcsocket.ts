@@ -4,7 +4,7 @@ import { SocketProvider } from "./provider-socket.js";
 
 import type { Socket } from "net";
 import type { Networkish } from "./network.js";
-
+import { JsonRpcApiProviderOptions } from "./provider-jsonrpc.js";
 
 // @TODO: Is this sufficient? Is this robust? Will newlines occur between
 // all payloads and only between payloads?
@@ -35,8 +35,8 @@ export class IpcSocketProvider extends SocketProvider {
      */
     get socket(): Socket { return this.#socket; }
 
-    constructor(path: string, network?: Networkish) {
-        super(network);
+    constructor(path: string, network?: Networkish, options?: JsonRpcApiProviderOptions) {
+        super(network, options);
         this.#socket = connect(path);
 
         this.socket.on("ready", async () => {

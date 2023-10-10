@@ -2,6 +2,7 @@
 import { SocketProvider } from "./provider-socket.js";
 import type { Socket } from "net";
 import type { Networkish } from "./network.js";
+import { JsonRpcApiProviderOptions } from "./provider-jsonrpc.js";
 /**
  *  An **IpcSocketProvider** connects over an IPC socket on the host
  *  which provides fast access to the node, but requires the node and
@@ -13,7 +14,7 @@ export declare class IpcSocketProvider extends SocketProvider {
      *  The connected socket.
      */
     get socket(): Socket;
-    constructor(path: string, network?: Networkish);
+    constructor(path: string, network?: Networkish, options?: JsonRpcApiProviderOptions);
     destroy(): void;
     _write(message: string): Promise<void>;
 }
